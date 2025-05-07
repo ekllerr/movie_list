@@ -79,7 +79,7 @@ input{
     text-align: center;
 }
 
-.movie button {
+.movie .deleteBtn {
     margin-top: 10px;
     padding: 6px 12px;
     background-color: #ff4d4d;
@@ -91,6 +91,6 @@ input{
     transition: background-color 0.2s ease-in-out;
 }
 
-.movie button:hover {
+.movie .deleteBtn:hover {
     background-color: #e60000;
 }

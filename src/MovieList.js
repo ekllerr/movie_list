@@ -17,6 +17,10 @@ export class MovieList{
         }
     }
 
+    removeMovieById(id){
+        this.movieList = this.movieList.filter(m => m.id != id);
+    }
+
     has(movie){
         return this.movieList.some(m => m.id === movie.id);
     }

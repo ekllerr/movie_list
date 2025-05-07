@@ -41,13 +41,39 @@ addBtn.addEventListener('click', e => {
     const movie = new Movie(movieList.movieList.length,title.value, releaseYear.value, duration.value, previewImg.src);
 
     movieList.addMovie(movie);
+
+    setList();
+
+    clearFields(title,releaseYear,duration,img);
+    previewImg.src = '';
+  /*  const deleteBtnArr = document.querySelectorAll('.deleteBtn');
+    for(let i = 0; i < deleteBtnArr.length; i++){
+        deleteBtnArr[i].addEventListener('click', e => {
+            const movieId = e.target.closest('.movie').id;
+            movieList.removeMovieById(movieId);
+            setList();
+        });
+
+    }*/
+});
+
+movieDiv.addEventListener('click', e => {
+    if(e.target.classList.contains('deleteBtn')){
+        const movieId = e.target.closest('.movie').id;
+        movieList.removeMovieById(movieId);
+        setList();
+    }
+})
+
+
+function setList(){
     const html = movieList.getHtml();
     movieDiv.innerHTML = '';
     movieDiv.append(html);
 
-    clearFields(title,releaseYear,duration,img);
-    previewImg.src = '';
-});
+}
+
+
 
 function checkFields(...fields){
     for(let i = 0; i < fields.length; i++){

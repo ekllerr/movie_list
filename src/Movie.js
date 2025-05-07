@@ -10,6 +10,7 @@ export class Movie{
     getHtml(){
         const container = document.createElement('div');
         container.classList.add('movie');
+        container.id = this.id;
 
         const title = document.createElement('h3');
         title.innerText = this.title;
@@ -21,7 +22,15 @@ export class Movie{
         const info = document.createElement('p');
         info.innerText = `Year: ${this.releaseYear}, duration: ${this.duration}`;
 
-        container.append(title,img,info);
+        const buttonsDiv = document.createElement('div');
+        const deleteBtn = document.createElement('input');
+        deleteBtn.type = 'button';
+        deleteBtn.value = 'Delete';
+        deleteBtn.classList.add('deleteBtn');
+
+        buttonsDiv.append(deleteBtn);
+
+        container.append(title,img,info,buttonsDiv);
 
         return container;
     }
