@@ -46,15 +46,7 @@ addBtn.addEventListener('click', e => {
 
     clearFields(title,releaseYear,duration,img);
     previewImg.src = '';
-  /*  const deleteBtnArr = document.querySelectorAll('.deleteBtn');
-    for(let i = 0; i < deleteBtnArr.length; i++){
-        deleteBtnArr[i].addEventListener('click', e => {
-            const movieId = e.target.closest('.movie').id;
-            movieList.removeMovieById(movieId);
-            setList();
-        });
 
-    }*/
 });
 
 movieDiv.addEventListener('click', e => {
@@ -63,8 +55,23 @@ movieDiv.addEventListener('click', e => {
         movieList.removeMovieById(movieId);
         setList();
     }
-})
 
+    if(e.target.classList.contains('editBtn')){
+        const movieId = e.target.closest('.movie').id;
+        const movie = movieList.movieList.filter(m => m.id === parseInt(movieId))[0];
+        console.log(movie);
+        editMovie(movie);
+    }
+});
+
+function editMovie(movie){
+    title.value = movie.title;
+    releaseYear.value = movie.releaseYear;
+    duration.value = movie.duration;
+    previewImg.src = movie.imgUrl;
+    movieList.removeMovieById(movie.id);
+    setList();
+}
 
 function setList(){
     const html = movieList.getHtml();

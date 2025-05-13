@@ -79,18 +79,50 @@ input{
     text-align: center;
 }
 
+.movie .buttonsDiv{
+    display: flex;
+    gap: 1rem;
+}
+
 .movie .deleteBtn {
     margin-top: 10px;
     padding: 6px 12px;
-    background-color: #ff4d4d;
+    /*background-color: #d93838;*/
+    background: #c93737;
     border: none;
     border-radius: 6px;
     color: white;
     cursor: pointer;
     font-size: 0.9em;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.4s;
+    width: 5rem;
 }
 
 .movie .deleteBtn:hover {
     background-color: #e60000;
+}
+
+.movie .deleteBtn:active{
+    box-shadow: 0 0 10px 2px #2c2c2c inset;
+}
+
+.movie .editBtn{
+    margin-top: 10px;
+    padding: 6px 12px;
+    background-color: #464646;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.4s;
+    width: 5rem;
+}
+
+.movie .editBtn:hover {
+    background-color: #1c1c1c;
+}
+
+.movie .editBtn:active{
+    box-shadow: 0 0 10px 2px #737373 inset;
 }

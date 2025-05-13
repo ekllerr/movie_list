@@ -11,14 +11,14 @@ export class MovieList{
         this.movieList.push(movie);
     }
 
-    removeMovie(movie){
+/*    removeMovie(movie){
         if(!this.has(movie)){
             alert('This movie is not in the list');
         }
-    }
+    }*/
 
     removeMovieById(id){
-        this.movieList = this.movieList.filter(m => m.id != id);
+        this.movieList = this.movieList.filter(m => m.id !== parseInt(id));
     }
 
     has(movie){

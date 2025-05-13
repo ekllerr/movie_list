@@ -24,10 +24,19 @@ export class Movie{
 
         const buttonsDiv = document.createElement('div');
         const deleteBtn = document.createElement('input');
+        const editBtn = document.createElement('input');
+
+        buttonsDiv.classList.add('buttonsDiv');
+
         deleteBtn.type = 'button';
         deleteBtn.value = 'Delete';
         deleteBtn.classList.add('deleteBtn');
 
+        editBtn.type = 'button';
+        editBtn.value = 'Edit';
+        editBtn.classList.add('editBtn');
+
+        buttonsDiv.append(editBtn);
         buttonsDiv.append(deleteBtn);
 
         container.append(title,img,info,buttonsDiv);
