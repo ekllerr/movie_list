@@ -29,10 +29,18 @@ img.addEventListener('change', () => {
     previewImg.src = imageUrl;
 });
 
-
 addBtn.addEventListener('click', e => {
     e.preventDefault();
-    const isValid = checkFields(title,releaseYear,duration,img);
+    let isValid;
+
+    //previewImg.attributes[0].value is a src attribute of <img>
+    if(previewImg.attributes[0].value !== '' && !img.value){
+        isValid = checkFields(title,releaseYear, duration);
+    }
+    else{
+        isValid = checkFields(title,releaseYear,duration,img);
+    }
+
     if (!isValid){
         alert('You must fill in all inputs');
         return;
@@ -59,7 +67,6 @@ movieDiv.addEventListener('click', e => {
     if(e.target.classList.contains('editBtn')){
         const movieId = e.target.closest('.movie').id;
         const movie = movieList.movieList.filter(m => m.id === parseInt(movieId))[0];
-        console.log(movie);
         editMovie(movie);
     }
 });
