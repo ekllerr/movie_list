@@ -11,18 +11,13 @@ export class MovieList{
         this.list.push(movie);
     }
 
-/*    removeMovie(movie){
-        if(!this.has(movie)){
-            alert('This movie is not in the list');
-        }
-    }*/
 
     removeMovieById(id){
         this.list = this.list.filter(m => m.id !== parseInt(id));
     }
 
     has(movie){
-        return this.list.some(m => m.id === movie.id);
+        return this.list.some(m =>  m.id=== movie.id);
     }
 
     getHtml(){

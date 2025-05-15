@@ -9,14 +9,23 @@ const releaseYear = document.querySelector('#releaseYear');
 const duration = document.querySelector('#duration');
 const img = document.querySelector('#img');
 const previewImg = document.querySelector('#previewImg');
-const addBtn = document.querySelector('#addBtn');
+const addMovieBtn = document.querySelector('#addBtn');
 
-const movieDiv = document.createElement('div');
+const movieListContainer = document.createElement('div');
 
 const movieList = new MovieList();
 
 
-app.append(movieDiv);
+app.append(movieListContainer);
+
+/*window.onload = () => {
+    const movies = JSON.parse(localStorage.getItem('movieList'));
+    movies.forEach(m => {
+        const movie = new Movie(m.id,m.title,m.releaseYear,m.duration,m.imgUrl);
+        movieList.addMovie(movie);
+    })
+    setList();
+}*/
 
 img.addEventListener('change', () => {
    const file = img.files[0];
@@ -24,12 +33,11 @@ img.addEventListener('change', () => {
         alert('Please upload an image');
         img.value = '';
     }
-
     const imageUrl = URL.createObjectURL(file);
     previewImg.src = imageUrl;
 });
 
-addBtn.addEventListener('click', e => {
+addMovieBtn.addEventListener('click', e => {
     e.preventDefault();
     let isValid;
 
@@ -46,9 +54,11 @@ addBtn.addEventListener('click', e => {
         return;
     }
 
-    const movie = new Movie(movieList.list.length,title.value, releaseYear.value, duration.value, previewImg.src);
+    const movie = new Movie(Date.now(),title.value, releaseYear.value, duration.value, previewImg.src);
 
     movieList.addMovie(movie);
+
+    // localStorage.setItem('movieList',JSON.stringify(movieList.list));
 
     setList();
 
@@ -57,10 +67,15 @@ addBtn.addEventListener('click', e => {
 
 });
 
-movieDiv.addEventListener('click', e => {
+movieListContainer.addEventListener('click', e => {
     if(e.target.classList.contains('deleteBtn')){
         const movieId = e.target.closest('.movie').id;
         movieList.removeMovieById(movieId);
+
+   /*     let movies = JSON.parse(localStorage.getItem('movieList'));
+        movies = movies.filter(m => parseInt(m.id) !== parseInt(movieId));
+        localStorage.setItem('movieList', JSON.stringify(movies));*/
+
         setList();
     }
 
@@ -77,16 +92,22 @@ function editMovie(movie){
     duration.value = movie.duration;
     previewImg.src = movie.imgUrl;
     movieList.removeMovieById(movie.id);
+
+/*
+    let movies = JSON.parse(localStorage.getItem('movieList'));
+    movies = movies.filter(m => parseInt(m.id) !== parseInt(movie.id));
+    localStorage.setItem('movieList', JSON.stringify(movies));
+*/
+
     setList();
 }
 
 function setList(){
     const html = movieList.getHtml();
-    movieDiv.innerHTML = '';
-    movieDiv.append(html);
+    movieListContainer.innerHTML = '';
+    movieListContainer.append(html);
 
 }
-
 
 
 function checkFields(...fields){
