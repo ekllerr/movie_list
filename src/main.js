@@ -46,7 +46,7 @@ addBtn.addEventListener('click', e => {
         return;
     }
 
-    const movie = new Movie(movieList.movieList.length,title.value, releaseYear.value, duration.value, previewImg.src);
+    const movie = new Movie(movieList.list.length,title.value, releaseYear.value, duration.value, previewImg.src);
 
     movieList.addMovie(movie);
 
@@ -66,7 +66,7 @@ movieDiv.addEventListener('click', e => {
 
     if(e.target.classList.contains('editBtn')){
         const movieId = e.target.closest('.movie').id;
-        const movie = movieList.movieList.filter(m => m.id === parseInt(movieId))[0];
+        const movie = movieList.list.filter(m => m.id === parseInt(movieId))[0];
         editMovie(movie);
     }
 });

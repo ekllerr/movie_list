@@ -35,10 +35,9 @@ input{
     gap: 1rem;
 }
 
-/*#img{
-    border: none;
-    border-radius: 0;
-}*/
+#previewImg{
+    max-width: 15rem;
+}
 
 .notFilled{
     border: 2px solid darkred;
