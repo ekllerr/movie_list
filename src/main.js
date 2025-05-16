@@ -18,14 +18,14 @@ const movieList = new MovieList();
 
 app.append(movieListContainer);
 
-/*window.onload = () => {
+window.onload = () => {
     const movies = JSON.parse(localStorage.getItem('movieList'));
     movies.forEach(m => {
         const movie = new Movie(m.id,m.title,m.releaseYear,m.duration,m.imgUrl);
         movieList.addMovie(movie);
-    })
+    });
     setList();
-}*/
+}
 
 img.addEventListener('change', () => {
    const file = img.files[0];
@@ -58,7 +58,7 @@ addMovieBtn.addEventListener('click', e => {
 
     movieList.addMovie(movie);
 
-    // localStorage.setItem('movieList',JSON.stringify(movieList.list));
+    localStorage.setItem('movieList',JSON.stringify(movieList.list));
 
     setList();
 
@@ -72,9 +72,9 @@ movieListContainer.addEventListener('click', e => {
         const movieId = e.target.closest('.movie').id;
         movieList.removeMovieById(movieId);
 
-   /*     let movies = JSON.parse(localStorage.getItem('movieList'));
+        let movies = JSON.parse(localStorage.getItem('movieList'));
         movies = movies.filter(m => parseInt(m.id) !== parseInt(movieId));
-        localStorage.setItem('movieList', JSON.stringify(movies));*/
+        localStorage.setItem('movieList', JSON.stringify(movies));
 
         setList();
     }
@@ -93,11 +93,9 @@ function editMovie(movie){
     previewImg.src = movie.imgUrl;
     movieList.removeMovieById(movie.id);
 
-/*
     let movies = JSON.parse(localStorage.getItem('movieList'));
     movies = movies.filter(m => parseInt(m.id) !== parseInt(movie.id));
     localStorage.setItem('movieList', JSON.stringify(movies));
-*/
 
     setList();
 }
